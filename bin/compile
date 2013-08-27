@@ -6,12 +6,13 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 # config
-VERSION="1.9.0"
+VERSION="1.9.1"
 S3_BUCKET="stomita-buildpack-phantomjs"
 
-# s3 packages
-FILE_NAME="buildpack-phantomjs-${VERSION}.tar.gz"
-BUILDPACK_PHANTOMJS_PACKAGE="http://${S3_BUCKET}.s3.amazonaws.com/${FILE_NAME}"
+# packages
+ARCHIVE_NAME=phantomjs-${VERSION}-linux-x86_64
+FILE_NAME=${ARCHIVE_NAME}.tar.bz2
+BUILDPACK_PHANTOMJS_PACKAGE=https://phantomjs.googlecode.com/files/${FILE_NAME}
 
 mkdir -p $CACHE_DIR
 if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
