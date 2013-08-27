@@ -7,15 +7,15 @@ CACHE_DIR=$2
 
 # config
 VERSION="1.9.1"
-S3_BUCKET="timscott-buildpack-phantomjs"
+S3_BUCKET="timscott-binaries"
 
 # s3 packages
-FILE_NAME="buildpack-phantomjs-${VERSION}.tar.gz"
+FILE_NAME="phantomjs-${VERSION}-linux-x86_64.tar.gz"
 BUILDPACK_PHANTOMJS_PACKAGE="http://${S3_BUCKET}.s3.amazonaws.com/${FILE_NAME}"
 
 mkdir -p $CACHE_DIR
 if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
-  echo "-----> Fetching PhantomJS buildpack binaries from: ${BUILDPACK_PHANTOMJS_PACKAGE}"
+  echo "-----> Fetching PhantomJS buildpack binaries from ${BUILDPACK_PHANTOMJS_PACKAGE} to ${CACHE_DIR/$FILE_NAME}"
   curl $BUILDPACK_PHANTOMJS_PACKAGE -s -o $CACHE_DIR/$FILE_NAME
 fi
 
