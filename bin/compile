@@ -6,11 +6,12 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 # config
-VERSION="1.9.1"
+PHANTOMJS_VERSION="1.9.1"
+CASPERJS_VERSION="1.0.2"
 S3_BUCKET="timscott-binaries"
 
 # s3 packages
-FILE_NAME="phantomjs-${VERSION}-linux-x86_64.tar.gz"
+FILE_NAME="phantomjs-${PHANTOMJS_VERSION}-linux-x86_64.tar.gz"
 BUILDPACK_PHANTOMJS_PACKAGE="http://${S3_BUCKET}.s3.amazonaws.com/${FILE_NAME}"
 
 mkdir -p $CACHE_DIR
@@ -26,3 +27,5 @@ tar zxf $CACHE_DIR/$FILE_NAME -C $BUILD_DIR/vendor/phantomjs
 echo "-----> Cloning casperjs"
 cd $BUILD_DIR/vendor
 git clone git://github.com/n1k0/casperjs.git
+cd casperjs
+git checkout tags/$CASPERJS_VERSION
