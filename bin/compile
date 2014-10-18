@@ -7,7 +7,7 @@ CACHE_DIR=$2
 
 # config
 PHANTOMJS_VERSION="1.9.0"
-CASPER_REPO = "git://github.com/timscott/casperjs.git"
+CASPER_REPO="git://github.com/timscott/casperjs.git"
 CASPERJS_BRANCH="ssl-version-support"
 S3_BUCKET="timscott-binaries"
 
