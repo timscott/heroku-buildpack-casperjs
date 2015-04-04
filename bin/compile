@@ -7,6 +7,7 @@ CACHE_DIR=$2
 
 # config
 PHANTOMJS_VERSION="2.0.0"
+CASPER_REPO="git://github.com/timscott/casperjs.git"
 CASPERJS_BRANCH="phantomjs-2"
 S3_BUCKET="timscott-binaries"
 
@@ -26,6 +27,6 @@ tar zxf $CACHE_DIR/$FILE_NAME -C $BUILD_DIR/vendor/phantomjs
 
 echo "-----> Cloning casperjs"
 cd $BUILD_DIR/vendor
-git clone git://github.com/n1k0/casperjs.git
+git clone $CASPER_REPO
 cd casperjs
 git checkout $CASPERJS_BRANCH
