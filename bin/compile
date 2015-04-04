@@ -27,7 +27,7 @@ echo "-----> Extracting PhantomJS binaries to ${PHANTOM_DIR}"
 mkdir -p $PHANTOM_DIR
 tar zxf $CACHE_DIR/$FILE_NAME -C $PHANTOM_DIR
 
-echo "-----> Cloning casperjs"
+echo "-----> Cloning casperjs from ${CASPER_REPO}"
 cd $VENDOR_DIR
 git clone $CASPER_REPO
 cd casperjs
