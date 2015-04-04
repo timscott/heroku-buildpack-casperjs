@@ -10,8 +10,8 @@ PHANTOMJS_VERSION="2.0.0"
 CASPER_REPO="git://github.com/timscott/casperjs.git"
 CASPERJS_BRANCH="phantomjs-2"
 S3_BUCKET="timscott-binaries"
-VENDOR_DIR = "${BUILD_DIR}/vendor"
-PHANTOM_DIR = "${VENDOR_DIR}/phantomjs"
+VENDOR_DIR="${BUILD_DIR}/vendor"
+PHANTOM_DIR="${VENDOR_DIR}/phantomjs"
 
 # s3 packages
 FILE_NAME="phantomjs-${PHANTOMJS_VERSION}-linux-x86_64.tar.gz"
