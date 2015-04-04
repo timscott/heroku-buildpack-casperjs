@@ -10,6 +10,8 @@ PHANTOMJS_VERSION="2.0.0"
 CASPER_REPO="git://github.com/timscott/casperjs.git"
 CASPERJS_BRANCH="phantomjs-2"
 S3_BUCKET="timscott-binaries"
+VENDOR_DIR = "${BUILD_DIR}/vendor"
+PHANTOM_DIR = "${VENDOR_DIR}/phantomjs"
 
 # s3 packages
 FILE_NAME="phantomjs-${PHANTOMJS_VERSION}-linux-x86_64.tar.gz"
@@ -21,12 +23,12 @@ mkdir -p $CACHE_DIR
   curl $BUILDPACK_PHANTOMJS_PACKAGE -s -o $CACHE_DIR/$FILE_NAME
 # fi
 
-echo "-----> Extracting PhantomJS binaries"
-mkdir -p $BUILD_DIR/vendor/phantomjs
-tar zxf $CACHE_DIR/$FILE_NAME -C $BUILD_DIR/vendor/phantomjs
+echo "-----> Extracting PhantomJS binaries to ${PHANTOM_DIR}"
+mkdir -p $PHANTOM_DIR
+tar zxf $CACHE_DIR/$FILE_NAME -C $PHANTOM_DIR
 
 echo "-----> Cloning casperjs"
-cd $BUILD_DIR/vendor
+cd $VENDOR_DIR
 git clone $CASPER_REPO
 cd casperjs
 git checkout $CASPERJS_BRANCH
