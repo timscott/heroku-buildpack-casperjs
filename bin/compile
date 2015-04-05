@@ -28,7 +28,7 @@ echo "-----> Extracting PhantomJS binaries from ${PHANTOMJS_PACKAGE_PATH} to ${P
 mkdir -p $PHANTOMJS_DIR
 cd $PHANTOMJS_DIR
 jar xf $PHANTOMJS_PACKAGE_PATH
-chmod +x $PHANTOMJS_BINARY_PATH
+# chmod +x $PHANTOMJS_BINARY_PATH
 
 echo "-----> Cloning casperjs from ${CASPER_REPO} and checking out ${CASPERJS_BRANCH}"
 cd $VENDOR_DIR
