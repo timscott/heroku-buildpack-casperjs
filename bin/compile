@@ -24,6 +24,7 @@ if ! [ -e $PHANTOMJS_PACKAGE_PATH ]; then
 fi
 
 echo "-----> Extracting PhantomJS binaries from ${PHANTOMJS_PACKAGE_PATH} to ${PHANTOMJS_DIR}"
+mkdir -p $VENDOR_DIR
 cd $VENDOR_DIR
 jar xf $PHANTOMJS_PACKAGE_PATH
 mv $VENDOR_DIR/$PHANTOMJS_NAME $PHANTOMJS_DIR
