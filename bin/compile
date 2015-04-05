@@ -7,6 +7,7 @@ CACHE_DIR=$2
 VENDOR_DIR="${BUILD_DIR}/vendor"
 PHANTOMJS_PACKAGE_FILENAME="phantomjs-2.0.0-20141016-u1404-x86_64.tar.gz"
 PHANTOMJS_PACKAGE_URL="http://timscott-binaries.s3.amazonaws.com/#{PHANTOMJS_PACKAGE_FILENAME}"
+PHANTOMJS_PACKAGE_PATH="${CACHE_DIR}/${PHANTOMJS_PACKAGE_FILENAME}"
 PHANTOMJS_DIR="${VENDOR_DIR}/phantomjs"
 PHANTOMJS_PROFILE_PATH="$BUILD_DIR/.profile.d/phantomjs.sh"
 CASPER_REPO="git://github.com/timscott/casperjs.git"
@@ -14,14 +15,14 @@ CASPERJS_BRANCH="phantomjs-2"
 
 mkdir -p $CACHE_DIR
 
-# if ! [ -e $CACHE_DIR/$PHANTOMJS_PACKAGE_FILENAME ]; then
+if ! [ -e $PHANTOMJS_PACKAGE_PATH ]; then
   echo "-----> Fetching PhantomJS buildpack binaries from ${PHANTOMJS_PACKAGE_URL} to ${CACHE_DIR}/${PHANTOMJS_PACKAGE_FILENAME}"
-  curl $PHANTOMJS_PACKAGE_URL --verbose -L -s -o $CACHE_DIR/$PHANTOMJS_PACKAGE_FILENAME
-# fi
+  curl $PHANTOMJS_PACKAGE_URL --verbose -L -s -o $PHANTOMJS_PACKAGE_PATH
+fi
 
-echo "-----> Extracting PhantomJS binaries to ${PHANTOMJS_DIR}"
+echo "-----> Extracting PhantomJS binaries from ${PHANTOMJS_PACKAGE_PATH} to ${PHANTOMJS_DIR}"
 mkdir -p $PHANTOMJS_DIR
-tar zxf $CACHE_DIR/$FILE_NAME -C $PHANTOMJS_DIR
+tar zxf $PHANTOMJS_PACKAGE_PATH -C $PHANTOMJS_DIR
 chmod +x $PHANTOMJS_DIR/bin/phantomjs
 
 echo "-----> Cloning casperjs from ${CASPER_REPO} and checking out ${CASPERJS_BRANCH}"
