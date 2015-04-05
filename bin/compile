@@ -19,10 +19,10 @@ CASPERJS_BRANCH="phantomjs-2"
 
 mkdir -p $CACHE_DIR
 
-if ! [ -e $PHANTOMJS_PACKAGE_PATH ]; then
+# if ! [ -e $PHANTOMJS_PACKAGE_PATH ]; then
   echo "-----> Fetching PhantomJS buildpack binaries from ${PHANTOMJS_PACKAGE_URL} to ${PHANTOMJS_PACKAGE_PATH}"
   curl $PHANTOMJS_PACKAGE_URL --verbose -L -s -o $PHANTOMJS_PACKAGE_PATH
-fi
+# fi
 
 echo "-----> Extracting PhantomJS binaries from ${PHANTOMJS_PACKAGE_PATH} to ${PHANTOMJS_DIR}"
 mkdir -p $PHANTOMJS_DIR
