@@ -5,8 +5,10 @@ set -e
 BUILD_DIR=$1
 CACHE_DIR=$2
 VENDOR_DIR="${BUILD_DIR}/vendor"
-PHANTOMJS_PACKAGE_FILENAME="phantomjs-2.0.0-20141016-u1410-x86_64.zip"
-PHANTOMJS_PACKAGE_URL="https://github.com/bprodoehl/phantomjs/releases/download/2.0.0-20141016/${PHANTOMJS_PACKAGE_FILENAME}"
+PHANTOMJS_VERSION="2.0.0-20141016"
+PHANTOMJS_NAME="phantomjs-${PHANTOMJS_VERSION}"
+PHANTOMJS_PACKAGE_FILENAME="${PHANTOMJS_NAME}-u1410-x86_64.zip"
+PHANTOMJS_PACKAGE_URL="https://github.com/bprodoehl/phantomjs/releases/download/${PHANTOMJS_VERSION}/${PHANTOMJS_PACKAGE_FILENAME}"
 PHANTOMJS_PACKAGE_PATH="${CACHE_DIR}/${PHANTOMJS_PACKAGE_FILENAME}"
 PHANTOMJS_DIR="${VENDOR_DIR}/phantomjs"
 PHANTOMJS_BINARY_PATH="${PHANTOMJS_DIR}/bin/phantomjs"
@@ -22,17 +24,13 @@ if ! [ -e $PHANTOMJS_PACKAGE_PATH ]; then
 fi
 
 echo "-----> Extracting PhantomJS binaries from ${PHANTOMJS_PACKAGE_PATH} to ${PHANTOMJS_DIR}"
-mkdir -p $PHANTOMJS_DIR
-cd $PHANTOMJS_DIR
+cd $VENDOR_DIR
 jar xf $PHANTOMJS_PACKAGE_PATH
-# chmod +x $PHANTOMJS_BINARY_PATH
+mv $VENDOR_DIR/$PHANTOMJS_NAME $PHANTOMJS_DIR
+chmod +x $PHANTOMJS_BINARY_PATH
 
 echo "-----> Cloning casperjs from ${CASPER_REPO} and checking out ${CASPERJS_BRANCH}"
 cd $VENDOR_DIR
 git clone $CASPER_REPO
 cd casperjs
 git checkout $CASPERJS_BRANCH
-
-echo "-----> exporting PATH and LIBRARY_PATH"
-mkdir -p $(dirname $PHANTOMJS_PROFILE_PATH)
-echo 'export PATH="$PATH:vendor/phantomjs/bin"' >> $PHANTOMJS_PROFILE_PATH
