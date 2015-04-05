@@ -23,7 +23,7 @@ fi
 echo "-----> Extracting PhantomJS binaries from ${PHANTOMJS_PACKAGE_PATH} to ${PHANTOMJS_DIR}"
 mkdir -p $PHANTOMJS_DIR
 cd $CACHE_DIR
-unzip $PHANTOMJS_PACKAGE_FILENAME
+jar xf $PHANTOMJS_PACKAGE_FILENAME
 mv $PHANTOMJS_PACKAGE_FILENAME $PHANTOMJS_DIR
 chmod +x $PHANTOMJS_DIR/bin/phantomjs
 
